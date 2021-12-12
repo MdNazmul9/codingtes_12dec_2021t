@@ -1,0 +1,25 @@
+
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+post details
+{% endblock title %}
+
+{% block content %}
+<div>
+    <a href="{% url 'blog:create_posts' %}">+add new post </a>
+</div>
+
+<div>
+    
+    <h3> Title: {{ post.title }}</h3>
+    <h4> Author: {{ post.author }}</h4>
+    <p> Body: {{ post.body | safe  }}</p>
+</div>
+
+<div>
+    <a href="{% url 'blog:post_update' pk=post.id %}"> <button class='btn btn-primary'>Update</button> </a>
+    <a href="{% url 'blog:post_delete' pk=post.id %}"> <button class='btn btn-danger'>Delete</button> </a>
+</div>
+
+{% endblock content %}

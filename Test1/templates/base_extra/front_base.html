@@ -1,0 +1,116 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/78ceb0f66b.js" crossorigin="anonymous"></script>
+    <title>
+      {% block title %} {% endblock title %}  
+    </title>
+    <style>
+      code {
+        font-family: Consolas,"courier new";
+        background-color:grey;
+        padding: 2px;
+        font-size: 105%;
+      }
+      </style>
+
+  </head>
+  <body>
+    <header class="py-3 mb-4 border-bottom shadow">
+      <div class="container-fluid align-items-center d-flex">
+
+        <div class="flex-grow-1 d-flex align-items-center">
+            <div class="flex-shrink-0">
+              
+               <a href="{% url 'home' %}"  class="text-decoration-none"> <h4>EMS &nbsp;&nbsp;&nbsp;&nbsp;</h4></a>
+            </div>
+
+
+          <div class="flex-grow-1 d-flex align-items-space-between">
+            <div class="col-md-12 d-flex">
+                <div class="col-md-11 d-flex">
+            
+                    <div class="flex-shrink-0 ">
+                        <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"
+                            class="border rounded-3 p-2 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i></a>
+                    </div>
+                    <div class="flex-shrink-0 ">
+                        <!-- <button class="btn btn-light"> Blog</button> -->
+                        <a href="{% url 'blog:post_list' %}" class="border rounded-3 p-2 text-decoration-none">My Dairy</a>
+                    </div>
+                    <div class="flex-shrink-0 ">
+                        <a href="#" class="border rounded-3 p-2 text-decoration-none">About&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    </div>
+                </div>
+            
+                <div class="col-md-1">
+            
+                    <div class="flex-shrink-0 dropdown ">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle pull-right" id="dropdownUser2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- <img src="https://ehsansoftware.com/img/team/nazmul.jpg" alt="user" width="32" height="32"
+                                class="rounded-circle"> -->
+                                <i class="bi bi-person-circle"></i>
+                        </a>
+            
+                        <ul class="dropdown-menu">
+                            {% if user.is_authenticated %}
+            
+            
+                            <li><a class="dropdown-item" href="#">{{request.user.username}}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
+                            <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
+                            {% endif %}
+            
+            
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+            
+                </div>
+            </div>
+            <!-- <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list"></i></a> -->
+
+          </div>
+      </div>
+  </header>
+
+  <div class="container">
+      {% block content %}
+      
+      {% endblock content %}
+
+  </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+    {% block javascript %}
+      <script src="{% static 'js/base.js' %}"></script>
+    {% endblock javascript %}
+  
+  </body>
+</html>
