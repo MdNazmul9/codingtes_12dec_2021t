@@ -41,8 +41,8 @@ class Ticket(models.Model):
 
 class TicketPurchase(models.Model):
     purchase_station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='ticketpurchases')
-    seller = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=models.SET_NULL)
-    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, )
+    seller = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=models.SET_NULL, related_name='ticket_sheller')
+    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='ticket_buyer' )
     ticket = models.ForeignKey()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
