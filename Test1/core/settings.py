@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'blog',
-    'rwms_db'
+    'train'
 ]
 
 MIDDLEWARE = [
