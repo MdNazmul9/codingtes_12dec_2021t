@@ -1,17 +1,15 @@
-s = input()
-max_length = 0
-length= 0
-l = 0 
-for i in s:
-    if i == '(':
-        l +=1
-    else:
-        if l >0:
-            l -= 1
-            length += 2
-        else:
-            max_length = max(max_length, length)
-            length = 0
+input_list =input().replace('[','').replace(']', '').replace(',', ' ')
 
-print(max(max_length, length))
-    
+int_list =list(map(int, input_list.split(' ')))
+
+if all(i < 0 for i in int_list):
+    print(max(int_list))
+else:
+    mx= int_list[0]
+    a = 0
+    for i in range(len(int_list)):
+        a =max(0, a+int_list[i])
+        mx = max(a, mx)
+
+    print(mx)
+
