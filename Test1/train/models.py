@@ -2,12 +2,11 @@ from django.db import models
 from django.db.models.fields import related
 from accounts.models import CustomUser
 
-
 # Create your models here.
 class Train(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=100)
-
+    
     def __str__(self):
         return self.name
 
@@ -21,7 +20,6 @@ class TicketClass(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
-
 
 class Ticket(models.Model):
     train = models.ForeignKey(Train, on_delete=models.CASCADE, related_name="train_tickets")
@@ -37,8 +35,6 @@ class Ticket(models.Model):
     price_bangla_text = models.TextField()
     available_qualtity = models.IntegerField(default=0)
 
-
-
 class TicketPurchase(models.Model):
     purchase_station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='ticketpurchases')
     seller = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=models.SET_NULL, related_name='ticket_sheller')
@@ -48,6 +44,3 @@ class TicketPurchase(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     payment_procedure = models.CharField(max_length=100,blank=True, null=True) 
     trxID = models.CharField(max_length=100, blank=True, null=True)
-
-
-
